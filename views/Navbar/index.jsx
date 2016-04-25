@@ -20,6 +20,9 @@ module.exports = React.createClass({
       </ul>
       <ul className="nav navbar-nav pull-xs-right">
         <li className="nav-item">
+          <a href="https://ruby-china.org/account/sign_in" target="_blank" className="nav-link">{locales.zh_CN.sign_up}</a>
+        </li>
+        <li className="nav-item">
           <Link to="/login" className="nav-link">{locales.zh_CN.login}</Link>
         </li>
       </ul>
