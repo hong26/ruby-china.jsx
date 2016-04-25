@@ -1,13 +1,18 @@
 import React from 'react'
+import {stringify} from 'query-string'
 import {locales} from '../../settings'
 import {RUBY_CHINA_API_URL} from '../../constants'
 
 module.exports = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object
+  },
   getInitialState() {
     return {
       login: {
         username: '',
-        password: ''
+        password: '',
+        grant_type: 'password'
       }
     }
   },
@@ -17,13 +22,14 @@ module.exports = React.createClass({
   handleSubmit(event) {
     event.preventDefault()
 
-// fetch(`https://ruby-china.org/oauth/token?grant_type=password&username=${username}&password=${password}`, {
-// method: 'POST'
-// }).then((response) => response.json()).then((responseJSON) => {
-// console.log(responseJSON)
-// })
-
-
+    fetch(RUBY_CHINA_API_URL + 'oauth/token?' + stringify(this.state.login), {
+      method: 'POST'
+    }).then((response) => response.json()).then((responseJSON) => {
+      if (responseJSON.access_token) {
+        localStorage.setItem('access_token', responseJSON.access_token)
+        this.context.router.push('/')
+      }
+    })
   },
   handleChange(event) {
     const login = this.state.login
