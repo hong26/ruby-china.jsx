@@ -16,6 +16,14 @@ module.exports = React.createClass({
   },
   handleSubmit(event) {
     event.preventDefault()
+
+// fetch(`https://ruby-china.org/oauth/token?grant_type=password&username=${username}&password=${password}`, {
+// method: 'POST'
+// }).then((response) => response.json()).then((responseJSON) => {
+// console.log(responseJSON)
+// })
+
+
   },
   handleChange(event) {
     const login = this.state.login
