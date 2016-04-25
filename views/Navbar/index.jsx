@@ -18,14 +18,27 @@ module.exports = React.createClass({
           <Link to="/search" className="nav-link">{locales.zh_CN.search}</Link>
         </li>
       </ul>
-      <ul className="nav navbar-nav pull-xs-right">
-        <li className="nav-item">
-          <a href="https://ruby-china.org/account/sign_in" target="_blank" className="nav-link">{locales.zh_CN.sign_up}</a>
-        </li>
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">{locales.zh_CN.login}</Link>
-        </li>
-      </ul>
+      {
+        this.props.authorizedUser.login ? (() => {
+          return <ul className="nav navbar-nav pull-xs-right">
+            <li className="nav-item">
+              <Link to={`/${this.props.authorizedUser.login}`} className="nav-link">{this.props.authorizedUser.name}</Link>
+            </li>
+            <li className="nav-item">
+              <a href="/logout" className="nav-link">{locales.zh_CN.logout}</a>
+            </li>
+          </ul>
+        })() : (() => {
+          return <ul className="nav navbar-nav pull-xs-right">
+            <li className="nav-item">
+              <a href="https://ruby-china.org/account/sign_in" target="_blank" className="nav-link">{locales.zh_CN.sign_up}</a>
+            </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">{locales.zh_CN.login}</Link>
+            </li>
+          </ul>
+        })()
+      }
     </nav>
   }
 })

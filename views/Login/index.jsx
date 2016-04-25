@@ -22,7 +22,7 @@ module.exports = React.createClass({
   handleSubmit(event) {
     event.preventDefault()
 
-    fetch(RUBY_CHINA_API_URL + 'oauth/token?' + stringify(this.state.login), {
+    fetch(RUBY_CHINA_API_URL + '/oauth/token?' + stringify(this.state.login), {
       method: 'POST'
     }).then((response) => response.json()).then((responseJSON) => {
       if (responseJSON.access_token) {
