@@ -9,6 +9,7 @@ module.exports = {
       logout: '退出',
       latest: '最新',
       search: '搜索',
+      sign_up: '注册',
       discuss: '讨论',
       settings: '设置',
       password: '密码',
