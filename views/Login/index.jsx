@@ -1,5 +1,6 @@
 import React from 'react'
 import {locales} from '../../settings'
+import {RUBY_CHINA_API_URL} from '../../constants'
 
 module.exports = React.createClass({
   getInitialState() {
