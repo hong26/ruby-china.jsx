@@ -11,6 +11,9 @@ module.exports = React.createClass({
       }
     }
   },
+  componentDidMount() {
+    document.title = locales.zh_CN.login
+  },
   handleSubmit(event) {
     event.preventDefault()
   },
