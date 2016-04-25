@@ -18,7 +18,8 @@ module.exports = {
         '用户名、密码不能为空',
         '用户名、密码不一致'
       ],
-      notifications: '通知'
+      notifications: '通知',
+      pages_404: '抱歉，未找到该页面'
     }
   }
 }
