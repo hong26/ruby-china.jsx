@@ -27,6 +27,7 @@ module.exports = React.createClass({
     }).then((response) => response.json()).then((responseJSON) => {
       if (responseJSON.access_token) {
         localStorage.setItem('access_token', responseJSON.access_token)
+        this.props.setAuthorizedUser()
         this.context.router.push('/')
       }
     })
