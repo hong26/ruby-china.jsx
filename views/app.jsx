@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import {RUBY_CHINA_API_V3_URL} from '../constants'
+import Topics from './topics'
 
 module.exports = React.createClass({
   getInitialState() {

@@ -5,14 +5,15 @@ import {
 } from 'react-router'
 
 import {locales} from '../../settings'
+require('./style')
 
 module.exports = React.createClass({
   render() {
-    return <nav className="navbar navbar-light bg-faded">
+    return <nav className="navbar navbar-light navbar-fixed-top bg-faded">
       <IndexLink to="/" className="navbar-brand">Ruby China</IndexLink>
       <ul className="nav navbar-nav">
         <li className="nav-item">
-          <Link to="/latest" className="nav-link">{locales.zh_CN.latest}</Link>
+          <Link to="/topics/1" className="nav-link">{locales.zh_CN.latest}</Link>
         </li>
         <li className="nav-item">
           <Link to="/search" className="nav-link">{locales.zh_CN.search}</Link>
