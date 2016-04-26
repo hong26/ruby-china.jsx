@@ -36,7 +36,7 @@ module.exports = React.createClass({
         React.Children.map(this.props.children, (e) => {
           return React.cloneElement(e, {
             accessToken: this.state.accessToken,
-            setAuthorizedUser: this.state.setAuthorizedUser
+            setAuthorizedUser: this.setAuthorizedUser
           })
         })
       }
