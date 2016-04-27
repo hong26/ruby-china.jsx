@@ -13,7 +13,7 @@ module.exports = React.createClass({
       <IndexLink to="/" className="navbar-brand">Ruby China</IndexLink>
       <ul className="nav navbar-nav">
         <li className="nav-item">
-          <Link to="/topics/1" className="nav-link">{locales.zh_CN.latest}</Link>
+          <a href="/topics/1" className='nav-link'>{locales.zh_CN.latest}</a>
         </li>
         <li className="nav-item">
           <Link to="/search" className="nav-link">{locales.zh_CN.search}</Link>
