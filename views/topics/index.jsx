@@ -14,13 +14,13 @@ const Topics=React.createClass({
 
   componentDidMount() {
     if(this.state.digital===undefined){
-        this.paging(1)
-    let pages=this.state.pages
+      let pages=this.state.pages
       for(let i=0;i<pages.length;i++){
          pages[i]=i+1
     }
-    this.setState({pages:pages,digital:1})
+    this.setState({pages:pages})
     document.title = 'Ruby-China'
+    this.paging(1)
     }else{
     this.paging(this.state.digital)
     let pages=this.state.pages
