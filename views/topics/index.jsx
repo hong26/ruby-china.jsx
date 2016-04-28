@@ -1,6 +1,8 @@
 import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import {locales} from '../../settings'
+import Loaders from '../Loaders'
+
 require('./style')
 
 const Topics=React.createClass({
@@ -59,16 +61,18 @@ const Topics=React.createClass({
     let topics = this.state.topics
     if (topics){
       return(
-        <div className='container by-container'>
+        <div className='container'>
           <div className='list-group'>{topics.map((item, index) => {
             return(
               <div key={index} className='list-group-item'>
                 <h5><Link to={`/topic/${item.id}`}>{item.title}</Link></h5>
+                <pre>
+                  发布时间:{this.dateStatistics(item.created_at)}
+                </pre>
+                <code className='label-pill pull-xs-right'>{item.replies_count}</code>
                 <img src={item.user.avatar_url} className='headportrait'/>
                 <span className='label label-pill label-info'> 发布者:{item.user.login} </span>
                 <span className='label label-pill label-warning'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span>
-                <span> 发布时间:{this.dateStatistics(item.created_at)} </span>
-                <span className='label label-danger label-pill pull-xs-right'>{item.replies_count}</span>
               </div>
               )
           })}
@@ -112,7 +116,7 @@ const Topics=React.createClass({
       </div>
         )
     }
-    return(<div><h1>请稍等......</h1></div>)
+    return<div className='container by-container'><Loaders style={{backgroundColor: 'lightgray'}} /></div>
   }
 })
 export default Topics;
