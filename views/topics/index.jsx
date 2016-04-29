@@ -52,7 +52,7 @@ const Topics=React.createClass({
     const hours=newDate.getHours()
     const minutes=newDate.getMinutes()
     const seconds=newDate.getSeconds()
-    return (year)+'年'+(month)+'月'+(date)+'日'+(hours<10 ? '0'+hours:hours)+':'+(minutes<10 ? '0'+minutes:minutes)+':'+(seconds<10 ? '0'+seconds:seconds)
+    return (year)+'-'+(month)+'-'+(date)+' '+(hours<10 ? '0'+hours:hours)+':'+(minutes<10 ? '0'+minutes:minutes)+':'+(seconds<10 ? '0'+seconds:seconds)
   },
 
 
@@ -66,13 +66,13 @@ const Topics=React.createClass({
             return(
               <div key={index} className='list-group-item'>
                 <h5><Link to={`/topic/${item.id}`}>{item.title}</Link></h5>
-                <pre>
+                <code className='label-pill pull-xs-right'>{item.replies_count}</code>
+                <img src={item.user.avatar_url} className='headportrait lebel-ctm'/>
+                <span className='label label-pill label-info lebel-ctm'> 发布者:{item.user.login} </span>
+                <span className='label label-pill label-warning lebel-ctm'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span>
+                <pre className='font-style'>
                   发布时间:{this.dateStatistics(item.created_at)}
                 </pre>
-                <code className='label-pill pull-xs-right'>{item.replies_count}</code>
-                <img src={item.user.avatar_url} className='headportrait'/>
-                <span className='label label-pill label-info'> 发布者:{item.user.login} </span>
-                <span className='label label-pill label-warning'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span>
               </div>
               )
           })}
