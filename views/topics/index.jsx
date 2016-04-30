@@ -33,15 +33,41 @@ const Topics=React.createClass({
     document.title = locales.zh_CN.topics}
   },
 
-   paging(id,event){
-    fetch('https://ruby-china.org/api/v3/topics?limit=20&offset='+(id-1)*20).then((response)=>{
-      return response.json()
-    }).then((json)=>{
+// 获取网页信息新写法(fetch),有些浏览器不支持
+  //  paging(id,event){
+  //   fetch('https://ruby-china.org/api/v3/topics.json?type=last_actived&limit=20&offset='+(id-1)*20).then((response)=>{
+  //     return response.json()
+  //   }).then((json)=>{
+  //     this.setState({
+  //       topics:json.topics,
+  //       digital:id
+  //     })
+  //   })
+  // },
+
+// 获取网页信息旧写法,基本所有浏览器都可以支持
+  paging(id,event){
+    let xmlhttp
+    xmlhttp=null
+    if (window.XMLHttpRequest)
+      {// 支持  IE7, Firefox, Opera, etc.
+      xmlhttp=new XMLHttpRequest();
+      }
+    else if (window.ActiveXObject)
+      {// 支持  IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+    if (xmlhttp!=null)
+      {
+      xmlhttp.open("GET",'https://ruby-china.org/api/v3/topics.json?type=last_actived&limit=20&offset='+(id-1)*20,false);
+      xmlhttp.send(null);
+      let topickey=JSON.parse(xmlhttp.response)
       this.setState({
-        topics:json.topics,
+        topics:topickey.topics,
         digital:id
       })
-    })
+      }
   },
 
   dateStatistics(item){
@@ -67,9 +93,9 @@ const Topics=React.createClass({
               <div key={index} className='list-group-item'>
                 <h5><Link to={`/topic/${item.id}`}>{item.title}</Link></h5>
                 <code className='label-pill pull-xs-right'>{item.replies_count}</code>
-                <img src={item.user.avatar_url} className='headportrait lebel-ctm'/>
-                <span className='label label-pill label-info lebel-ctm'> 发布者:{item.user.login} </span>
-                <span className='label label-pill label-warning lebel-ctm'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span>
+                <Link to={`/users/${item.user.login}`}><img src={item.user.avatar_url} className='headportrait lebel-ctm'/></Link>
+                <Link to={`/users/${item.user.login}`}><span className='label label-pill label-info lebel-ctm'> 发布者:{item.user.login} </span></Link>
+                <Link to={`/users/${item.user.login}`}><span className='label label-pill label-warning lebel-ctm'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span></Link>
                 <pre className='font-style'>
                   发布时间:{this.dateStatistics(item.created_at)}
                 </pre>
