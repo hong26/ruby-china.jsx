@@ -22,14 +22,34 @@ module.exports = React.createClass({
         return false
       }
 
-      fetch(RUBY_CHINA_API_V3_URL + '/users/me?access_token=' + this.state.accessToken).then((response) => response.json()).then((responseJSON) => {
-        if (responseJSON.user) {
-          this.setState({
-            authorizedUser: responseJSON.user
-          })
-        }
-      })
+    let xmlhttp = null
+    if(window.XMLHttpRequest){
+      xmlhttp = new XMLHttpRequest
+    }
+    else if(window.ActiveXObject){
+      xmlhttp = new ActiveXObject('Microsoft.XMLHTTP')
+    }
+    if(xmlhttp != null){
+      xmlhttp.open('GET', RUBY_CHINA_API_V3_URL + '/users/me?access_token=' + this.state.accessToken, false)
+      xmlhttp.send(null)
+      let myuser = JSON.parse(xmlhttp.response)
+      console.log(myuser)
+      if(myuser.user){
+        this.setState({
+        authorizedUser: myuser.user
+        })
+      }
+    }
     })
+
+    //   fetch(RUBY_CHINA_API_V3_URL + '/users/me?access_token=' + this.state.accessToken).then((response) => response.json()).then((responseJSON) => {
+    //     if (responseJSON.user) {
+    //       this.setState({
+    //         authorizedUser: responseJSON.user
+    //       })
+    //     }
+    //   })
+    // })
   },
   render() {
     return <div className="app">

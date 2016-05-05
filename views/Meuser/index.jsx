@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import Loaders from '../Loaders'
 import {locales} from '../../settings'
-require('./style.sass')
 
 module.exports = React.createClass({
   getInitialState(){
@@ -49,24 +48,26 @@ module.exports = React.createClass({
   render(){
     let user = this.state.authorizedUser
     return(
-      <div className='container'>
-        <div className='user-div'>
-          <img src={user.avatar_url} className='img-rounded center-block'/>
-          <p>{user.name}</p>
+      <div className='media container'>
+        <div className='media-left media-middle user-div'><img src={user.avatar_url} className='media-object img-rounded img-by'/>
+        <span>{user.login}</span>
         </div>
-        <div className='list-group'>
-          <p className='list-group-item'><span className='by-list-title'>用户名:</span><span>{user.login}</span></p>
-          <p className='list-group-item'><span>注册时间:</span>{this.dateStatistics(user.created_at)}</p>
-          <p className='list-group-item'><span>昵称:</span>{user.name? user.name:'本人行不更名坐不改姓！'}</p>
-          <p className='list-group-item'><span>所在地:</span>{user.location? user.location:'未知'}</p>
-          <p className='list-group-item'><span>公司:</span>{user.company? user.company:'未知'}</p>
-          <p className='list-group-item'><span>Twitter:</span>{user.twitter? user.twitter:'未知'}</p>
-          <p className='list-group-item'><span>网站:</span><a href={user.website}>{user.website}</a></p>
-          <p className='list-group-item'><span>github:</span><a href={user.github?'https://github.com/'+user.github:''}>{user.github? user.github:'未知'}</a></p>
-          <p className='list-group-item'><span>email:</span>{user.email? user.email:'未知'}</p>
-          <p className='list-group-item'><span>座右铭：</span>{user.tagline? user.tagline:'还没有想好呢！'}</p>
-          <p className='list-group-item'><span>发表主题：</span><a>{user.topics_count}</a></p>
-          <p className='list-group-item'><span>收藏帖子：</span><a>{user.favorites_count}</a></p>
+        <div className='media-body body-user'>
+          <h2　className='media-heading'>个人信息</h2>
+          <div>
+            <p><span>用户名:</span>{user.login}</p>
+            <p><span>注册时间:</span>{this.dateStatistics(user.created_at)}</p>
+             <p><span>昵称:</span>{user.name? user.name:'本人行不更名坐不改姓！'}</p>
+            <p><span>所在地:</span>{user.location? user.location:'未知'}</p>
+            <p><span>公司:</span>{user.company? user.company:'未知'}</p>
+            <p><span>Twitter:</span>{user.twitter? user.twitter:'未知'}</p>
+            <p><span>网站:</span><a href={user.website}>{user.website}</a></p>
+            <p><span>github:</span><a href={user.github?'https://github.com/'+user.github:''}>{user.github? user.github:'未知'}</a></p>
+            <p><span>email:</span>{user.email? user.email:'未知'}</p>
+            <p><span>座右铭：</span>{user.tagline? user.tagline:'还没有想好呢！'}</p>
+            <p><span>发表主题：</span><a>{user.topics_count}</a></p>
+            <p><span>收藏帖子：</span><a>{user.favorites_count}</a></p>
+          </div>
         </div>
       </div>
       )
