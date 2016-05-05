@@ -12,6 +12,7 @@ import Login from '../views/Login'
 import Topics from '../views/topics'
 import Topic from '../views/topic'
 import Users from '../views/Users'
+import Meuser from '../views/Meuser'
 
 module.exports = () => {
   return <Router history={browserHistory}>
@@ -21,6 +22,7 @@ module.exports = () => {
       <Route path='/topics/:item' component={Topics} />
       <Route path='/topic/:itemId' component={Topic} />
       <Route path='/users/:login' component={Users} />
+      <Route path='/me/:id' component={Meuser} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>

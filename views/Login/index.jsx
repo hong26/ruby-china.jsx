@@ -22,16 +22,36 @@ module.exports = React.createClass({
   handleSubmit(event) {
     event.preventDefault()
 
-    fetch(RUBY_CHINA_API_URL + '/oauth/token?' + stringify(this.state.login), {
-      method: 'POST'
-    }).then((response) => response.json()).then((responseJSON) => {
+    // fetch(RUBY_CHINA_API_URL + '/oauth/token?' + stringify(this.state.login), {
+    //   method: 'POST'
+    // }).then((response) => response.json()).then((responseJSON) => {
+      // if (responseJSON.access_token) {
+      //   localStorage.setItem('access_token', responseJSON.access_token)
+      //   this.props.setAuthorizedUser()
+      //   this.context.router.push('/')
+      // }
+    // })
+    let xmlhttp = null
+    if (window.XMLHttpRequest)
+      {// 支持  IE7, Firefox, Opera, etc.
+      xmlhttp=new XMLHttpRequest();
+      }
+    else if (window.ActiveXObject)
+      {// 支持  IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    if(xmlhttp!=null){
+      xmlhttp.open('POST', RUBY_CHINA_API_URL + '/oauth/token?' + stringify(this.state.login), false)
+      xmlhttp.send(null)
+      let responseJSON=JSON.parse(xmlhttp.response)
       if (responseJSON.access_token) {
         localStorage.setItem('access_token', responseJSON.access_token)
         this.props.setAuthorizedUser()
         this.context.router.push('/')
       }
-    })
+    }
   },
+
   handleChange(event) {
     const login = this.state.login
     login[event.target.name] = event.target.value

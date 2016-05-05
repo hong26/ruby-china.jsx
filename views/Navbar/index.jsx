@@ -23,7 +23,7 @@ module.exports = React.createClass({
         this.props.authorizedUser.login ? (() => {
           return <ul className="nav navbar-nav pull-xs-right">
             <li className="nav-item">
-              <Link to={`/${this.props.authorizedUser.name}`} className="nav-link">{this.props.authorizedUser.name}</Link>
+              <Link to={`/me/${this.props.authorizedUser.name}`} className="nav-link">{this.props.authorizedUser.name}</Link>
             </li>
             <li className="nav-item">
               <a href="/logout" className="nav-link" onClick={(e) => {
