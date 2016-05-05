@@ -33,7 +33,6 @@ module.exports = React.createClass({
       xmlhttp.open('GET', RUBY_CHINA_API_V3_URL + '/users/me?access_token=' + this.state.accessToken, false)
       xmlhttp.send(null)
       let myuser = JSON.parse(xmlhttp.response)
-      console.log(myuser)
       if(myuser.user){
         this.setState({
         authorizedUser: myuser.user
