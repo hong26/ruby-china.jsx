@@ -36,9 +36,15 @@ module.exports = React.createClass({
       xmlhttp.open("GET",'https://ruby-china.org/api/v3/users/'+user,false);
       xmlhttp.send(null);
       let userkey=JSON.parse(xmlhttp.response)
-      this.setState({
-        user:userkey.user
-      })
+      // console.log(userkey)
+      if(userkey.user){
+        this.setState({
+          user:userkey.user
+        })
+      }
+      else{
+        window.location='/404'
+      }
       }
   },
 

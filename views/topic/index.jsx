@@ -51,9 +51,14 @@ const Topic=React.createClass({
       xmlhttp.open("GET",url,false);
       xmlhttp.send(null);
       let topickey=JSON.parse(xmlhttp.response)
-      this.setState({
-        topic:topickey.topic
-      })
+      if(topickey.topic){
+        this.setState({
+          topic:topickey.topic
+        })
+      }
+      else{
+        window.location='/404'
+      }
       }
   },
 
