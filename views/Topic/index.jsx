@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, Link, browserHistory } from 'react-router'
+import {Link} from 'react-router'
 import Loaders from '../Loaders'
 require('./style')
 
@@ -14,6 +14,7 @@ const Topic=React.createClass({
      // 获取网页信息旧写法,基本所有浏览器都可以支持
     this.loadXMLDoc('https://ruby-china.org/api/v3/topics/'+this.props.params.itemId)
     this.repLies('https://ruby-china.org/api/v3/topics/'+this.props.params.itemId+'/replies')
+    document.documentElement.scrollTop = document.body.scrollTop = 0
 
    // 获取网页信息新写法(fetch),有些浏览器不支持
     // fetch('https://ruby-china.org/api/v3/topics/'+this.props.params.itemId).then((response)=>{
@@ -106,13 +107,13 @@ const Topic=React.createClass({
         return (<div className='container'>
         <h1>{topic.title}</h1>
           <p className='font-style by-size'>
-            <span className='lebel-ctm'>由<Link to={`/users/${topic.user.login}`}> {topic.user.login} </Link>创建于:{this.dateStatistics(topic.created_at)}</span>
+            <span className='lebel-ctm'>由<Link to={`/${topic.user.login}`}> {topic.user.login} </Link>创建于:{this.dateStatistics(topic.created_at)}</span>
             <span className='lebel-ctm'>最后更新:{this.dateStatistics(topic.updated_at)}</span>
             <span className='lebel-ctm'>浏览数:{topic.hits}</span>
             <span className='lebel-ctm'>回复:{topic.replies_count}</span>
           </p>
-          <p><Link to={`/users/${topic.user.login}`} className='media-left'> <img src={topic.user.avatar_url} className=' img-rounded img-ctm'/></Link>
-          <Link to={`/users/${topic.user.login}`}>{topic.user.login}</Link></p>
+          <p><Link to={`/${topic.user.login}`} className='media-left'> <img src={topic.user.avatar_url} className=' img-rounded img-ctm'/></Link>
+          <Link to={`/${topic.user.login}`}>{topic.user.login}</Link></p>
         <div dangerouslySetInnerHTML={{__html: topic.body_html}} className='content-block'/>
             <h4 className='media-hctm'>暂无回复</h4>
           </div>
@@ -122,13 +123,13 @@ const Topic=React.createClass({
       return (<div className='container'>
         <h1>{topic.title}</h1>
           <p className='font-style by-size'>
-            <span className='lebel-ctm'>由<Link to={`/users/${topic.user.login}`}> {topic.user.login} </Link>创建于:{this.dateStatistics(topic.created_at)}</span>
+            <span className='lebel-ctm'>由<Link to={`/${topic.user.login}`}> {topic.user.login} </Link>创建于:{this.dateStatistics(topic.created_at)}</span>
             <span className='lebel-ctm'>最后更新:{this.dateStatistics(topic.updated_at)}</span>
             <span className='lebel-ctm'>浏览数:{topic.hits}</span>
             <span className='lebel-ctm'>回复:{topic.replies_count}</span>
           </p>
-          <p><Link to={`/users/${topic.user.login}`} className='media-left'> <img src={topic.user.avatar_url} className=' img-rounded img-ctm'/></Link>
-          <Link to={`/users/${topic.user.login}`}>{topic.user.login}</Link></p>
+          <p><Link to={`/${topic.user.login}`} className='media-left'> <img src={topic.user.avatar_url} className=' img-rounded img-ctm'/></Link>
+          <Link to={`/${topic.user.login}`}>{topic.user.login}</Link></p>
         <div dangerouslySetInnerHTML={{__html: topic.body_html}} className='content-block'/>
         <div className='media-body media-divctm'><h4 className='media-heading'>回复列表:</h4>
         {replies.map((rep,id)=>{
@@ -136,8 +137,8 @@ const Topic=React.createClass({
           <div key={id} className='media-pctm'>
           <p className='reply-style'>发表于:{this.dateStatistics(rep.created_at)}</p>
           <p className='media-spanctm'>{id+1}楼</p>
-          <Link to={`/users/${rep.user.login}`} className='media-left'> <img src={rep.user.avatar_url} className=' img-rounded img-ctm'/></Link>
-          <Link to={`/users/${rep.user.login}`}>{rep.user.login}</Link>
+          <Link to={`/${rep.user.login}`} className='media-left'> <img src={rep.user.avatar_url} className=' img-rounded img-ctm'/></Link>
+          <Link to={`/${rep.user.login}`}>{rep.user.login}</Link>
           <p dangerouslySetInnerHTML={{__html: rep.body_html}} className="content-block "/>
           </div>
         )

@@ -2,13 +2,16 @@ import React from 'react'
 import { Link } from 'react-router'
 import Loaders from '../Loaders'
 import {locales} from '../../settings'
+import Usertopics from '../Usertopics'
 require('./style.sass')
 
 module.exports = React.createClass({
   getInitialState(){
     return {
       login: this.props.params.login,
-      user: []
+      user: [],
+      done: false,
+      topic: false
     }
   },
 
@@ -43,7 +46,7 @@ module.exports = React.createClass({
         })
       }
       else{
-        window.location='/404'
+        window.location = '/users/404'
       }
       }
   },
@@ -77,7 +80,7 @@ module.exports = React.createClass({
       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
     if(xmlhttp!=null){
-      xmlhttp.open('POST', 'https://ruby-china.org/api/v3/users/'+this.state.user.login+'/follow\?access_token='+accessToken, false)
+      xmlhttp.open('POST', 'https://ruby-china.org/api/v3/users/'+this.state.user.login+'/follow?access_token='+accessToken, false)
       xmlhttp.send(null)
       let followkey=JSON.parse(xmlhttp.response)
       if(followkey.ok===1){
@@ -104,7 +107,7 @@ module.exports = React.createClass({
       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
     if(xmlhttp!=null){
-      xmlhttp.open('POST', 'https://ruby-china.org/api/v3/users/'+this.state.user.login+'/unfollow\?access_token='+accessToken, false)
+      xmlhttp.open('POST', 'https://ruby-china.org/api/v3/users/'+this.state.user.login+'/unfollow?access_token='+accessToken, false)
       xmlhttp.send(null)
       let followkey=JSON.parse(xmlhttp.response)
       if(followkey.ok===1){
@@ -115,8 +118,16 @@ module.exports = React.createClass({
     }
   },
 
+  topicClick(event){
+    this.setState({
+      done:!this.state.done,
+      topic:!this.state.topic
+    })
+  },
+
   render(){
     let user=this.state.user
+    if(this.state.done==false){
     return (
       <div className='media container'>
         <div className='media-left media-middle user-div'><img src={user.avatar_url} className='media-object img-rounded img-by'/>
@@ -136,12 +147,16 @@ module.exports = React.createClass({
             <p><span>github:</span><a href={user.github?'https://github.com/'+user.github:''}>{user.github? user.github:'未知'}</a></p>
             <p><span>email:</span>{user.email? user.email:'未知'}</p>
             <p><span>座右铭：</span>{user.tagline? user.tagline:'还没有想好呢！'}</p>
-            <p><span>发表主题：</span><a>{user.topics_count}</a></p>
+            <p><span>发表主题：</span><a onClick={this.topicClick}>{user.topics_count}</a></p>
             <p><span>收藏帖子：</span><a>{user.favorites_count}</a></p>
           </div>
         </div>
       </div>
     )
+  }
+if(this.state.done==true && this.state.topic==true){
+  return <Usertopics done={this.state.done} onclick={this.topicClick} topics={user.topics_count}/>
+}
 }
 })
 

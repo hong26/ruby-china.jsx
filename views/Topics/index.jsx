@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, Link, browserHistory } from 'react-router'
+import {Link} from 'react-router'
 import {locales} from '../../settings'
 import Loaders from '../Loaders'
 
@@ -67,7 +67,11 @@ const Topics=React.createClass({
         topics:topickey.topics,
         digital:id
       })
+      // window.location.reload(true)
+      // let osTop = document.documentElement.scrollTop || document.body.scrollTop
+      document.documentElement.scrollTop = document.body.scrollTop = 0
       }
+
   },
 
   dateStatistics(item){
@@ -93,9 +97,9 @@ const Topics=React.createClass({
               <div key={index} className='list-group-item'>
                 <h5><Link to={`/topic/${item.id}`}>{item.title}</Link></h5>
                 <code className='label-pill pull-xs-right'>{item.replies_count}</code>
-                <Link to={`/users/${item.user.login}`}><img src={item.user.avatar_url} className='headportrait lebel-ctm'/></Link>
-                <Link to={`/users/${item.user.login}`}><span className='label label-pill label-info lebel-ctm'> 发布者:{item.user.login} </span></Link>
-                <Link to={`/users/${item.user.login}`}><span className='label label-pill label-warning lebel-ctm'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span></Link>
+                <Link to={`/${item.user.login}`}><img src={item.user.avatar_url} className='headportrait lebel-ctm'/></Link>
+                <Link to={`/${item.user.login}`}><span className='label label-pill label-info lebel-ctm'> 发布者:{item.user.login} </span></Link>
+                <Link to={`/${item.user.login}`}><span className='label label-pill label-warning lebel-ctm'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span></Link>
                 <pre className='font-style'>
                   发布时间:{this.dateStatistics(item.created_at)}
                 </pre>

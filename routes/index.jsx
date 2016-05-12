@@ -9,8 +9,8 @@ import {
 import NotFound from '../views/404'
 import Application from '../views/app'
 import Login from '../views/Login'
-import Topics from '../views/topics'
-import Topic from '../views/topic'
+import Topics from '../views/Topics'
+import Topic from '../views/Topic'
 import Users from '../views/Users'
 import Meuser from '../views/Meuser'
 
@@ -21,7 +21,7 @@ module.exports = () => {
       <Route path="login" component={Login} />
       <Route path='/topics/:item' component={Topics} />
       <Route path='/topic/:itemId' component={Topic} />
-      <Route path='/users/:login' component={Users} />
+      <Route path='/:login' component={Users} />
       <Route path='/me/:id' component={Meuser} />
       <Route path="*" component={NotFound} />
     </Route>

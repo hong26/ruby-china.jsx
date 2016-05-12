@@ -5,7 +5,6 @@ import {
 } from 'react-router'
 
 import {locales} from '../../settings'
-require('./style')
 
 module.exports = React.createClass({
   render() {

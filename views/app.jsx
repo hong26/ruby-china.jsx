@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Meuser from './Meuser'
 import {RUBY_CHINA_API_V3_URL} from '../constants'
-import Topics from './topics'
+import Topics from './Topics'
 
 module.exports = React.createClass({
   getInitialState() {
