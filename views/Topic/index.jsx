@@ -83,6 +83,7 @@ const Topic=React.createClass({
       this.setState({
         replies:topickey.replies
       })
+      document.title = '帖子详情'
       }
   },
 
@@ -115,7 +116,7 @@ const Topic=React.createClass({
           <p><Link to={`/${topic.user.login}`} className='media-left'> <img src={topic.user.avatar_url} className=' img-rounded img-ctm'/></Link>
           <Link to={`/${topic.user.login}`}>{topic.user.login}</Link></p>
         <div dangerouslySetInnerHTML={{__html: topic.body_html}} className='content-block'/>
-            <h4 className='media-hctm'>暂无回复</h4>
+            <h4 className='media-hctm' id='a-128'>暂无回复</h4>
           </div>
         )
       }
@@ -131,7 +132,7 @@ const Topic=React.createClass({
           <p><Link to={`/${topic.user.login}`} className='media-left'> <img src={topic.user.avatar_url} className=' img-rounded img-ctm'/></Link>
           <Link to={`/${topic.user.login}`}>{topic.user.login}</Link></p>
         <div dangerouslySetInnerHTML={{__html: topic.body_html}} className='content-block'/>
-        <div className='media-body media-divctm'><h4 className='media-heading'>回复列表:</h4>
+        <div className='media-body media-divctm'><h4 className='media-heading' id='a-128'>回复列表:</h4>
         {replies.map((rep,id)=>{
         return (
           <div key={id} className='media-pctm'>

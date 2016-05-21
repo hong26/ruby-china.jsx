@@ -96,7 +96,7 @@ const Topics=React.createClass({
             return(
               <div key={index} className='list-group-item'>
                 <h5><Link to={`/topic/${item.id}`}>{item.title}</Link></h5>
-                <code className='label-pill pull-xs-right'>{item.replies_count}</code>
+                <code className='label-pill pull-xs-right'><a href={'/topic/'+item.id+'/#a-128'}>{item.replies_count}</a></code>
                 <Link to={`/${item.user.login}`}><img src={item.user.avatar_url} className='headportrait lebel-ctm'/></Link>
                 <Link to={`/${item.user.login}`}><span className='label label-pill label-info lebel-ctm'> 发布者:{item.user.login} </span></Link>
                 <Link to={`/${item.user.login}`}><span className='label label-pill label-warning lebel-ctm'> 最新回复:{item.last_reply_user_login? item.last_reply_user_login:'暂无回复'} </span></Link>
