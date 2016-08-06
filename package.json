@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test-w": "mocha --compilers js:babel-core/register --require ./test/setup.js -wG"
   },
   "license": "MIT",
   "private": true,
@@ -30,5 +31,14 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "enzyme": "^2.4.1",
+    "jsdom": "^9.4.1",
+    "mocha": "^2.5.3",
+    "react-addons-test-utils": "^15.0.1"
   }
 }
