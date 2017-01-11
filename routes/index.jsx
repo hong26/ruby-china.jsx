@@ -13,17 +13,14 @@ import Topics from '../views/Topics'
 import Topic from '../views/Topic'
 import Users from '../views/Users'
 import Meuser from '../views/Meuser'
+import Test from '../views/Test'
+import LoginTest from '../views/LoginTest'
 
 module.exports = () => {
   return <Router history={browserHistory}>
     <Route path="/" component={Application}>
-      <IndexRoute component={Topics} />
-      <Route path="login" component={Login} />
-      <Route path='/topics/:item' component={Topics} />
-      <Route path='/topic/:itemId' component={Topic} />
-      <Route path='/:login' component={Users} />
-      <Route path='/me/:id' component={Meuser} />
-      <Route path="*" component={NotFound} />
+      <Route path='/test' component={Test} />
+      <Route path='/logintest' component={LoginTest} />
     </Route>
   </Router>
 }

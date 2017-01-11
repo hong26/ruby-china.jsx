@@ -99,6 +99,7 @@ const Topic=React.createClass({
   },
 
   render(){
+    console.log('topic')
       let topic=this.state.topic
       let replies=this.state.replies
       if(topic==0){
